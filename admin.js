@@ -1,6 +1,8 @@
-const API_BASE = "http://localhost:5000/api";
 
-// ------- Navigation between sections -------
+const API_BASE = "https://fliperlabbackend-production.up.railway.app";
+const API_V1 = `${API_BASE}/api/v1`;
+
+
 document.querySelectorAll(".nav-link").forEach((btn) => {
   btn.addEventListener("click", () => {
     document
@@ -16,13 +18,13 @@ document.querySelectorAll(".nav-link").forEach((btn) => {
   });
 });
 
-// ------- Projects: list + create -------
+
 async function loadProjectsAdmin() {
   const tbody = document.getElementById("projectsTableBody");
   tbody.innerHTML = "<tr><td colspan='4'>Loading...</td></tr>";
 
   try {
-    const res = await fetch(`${API_BASE}/projects`);
+    const res = await fetch(`${API_V1}/projects`);
     const data = await res.json();
 
     if (!Array.isArray(data) || data.length === 0) {
@@ -42,7 +44,7 @@ async function loadProjectsAdmin() {
       tbody.appendChild(tr);
     });
   } catch (err) {
-    console.error(err);
+    console.error("Projects admin error:", err);
     tbody.innerHTML = "<tr><td colspan='4'>Failed to load projects.</td></tr>";
   }
 }
@@ -64,7 +66,7 @@ function initProjectForm() {
     };
 
     try {
-      const res = await fetch(`${API_BASE}/projects`, {
+      const res = await fetch(`${API_V1}/projects`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -81,20 +83,20 @@ function initProjectForm() {
         msg.classList.add("error");
       }
     } catch (err) {
-      console.error(err);
+      console.error("Project form error:", err);
       msg.textContent = "Something went wrong.";
       msg.classList.add("error");
     }
   });
 }
 
-// ------- Clients: list + create -------
+
 async function loadClientsAdmin() {
   const tbody = document.getElementById("clientsTableBody");
   tbody.innerHTML = "<tr><td colspan='5'>Loading...</td></tr>";
 
   try {
-    const res = await fetch(`${API_BASE}/clients`);
+    const res = await fetch(`${API_V1}/clients`);
     const data = await res.json();
 
     if (!Array.isArray(data) || data.length === 0) {
@@ -115,7 +117,7 @@ async function loadClientsAdmin() {
       tbody.appendChild(tr);
     });
   } catch (err) {
-    console.error(err);
+    console.error("Clients admin error:", err);
     tbody.innerHTML = "<tr><td colspan='5'>Failed to load clients.</td></tr>";
   }
 }
@@ -138,7 +140,7 @@ function initClientForm() {
     };
 
     try {
-      const res = await fetch(`${API_BASE}/clients`, {
+      const res = await fetch(`${API_V1}/clients`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -155,24 +157,25 @@ function initClientForm() {
         msg.classList.add("error");
       }
     } catch (err) {
-      console.error(err);
+      console.error("Client form error:", err);
       msg.textContent = "Something went wrong.";
       msg.classList.add("error");
     }
   });
 }
 
-// ------- Contacts: list only -------
+
 async function loadContactsAdmin() {
   const tbody = document.getElementById("contactsTableBody");
   tbody.innerHTML = "<tr><td colspan='5'>Loading...</td></tr>";
 
   try {
-    const res = await fetch(`${API_BASE}/contacts`);
+    const res = await fetch(`${API_V1}/contacts`);
     const data = await res.json();
 
     if (!Array.isArray(data) || data.length === 0) {
-      tbody.innerHTML = "<tr><td colspan='5'>No contact submissions yet.</td></tr>";
+      tbody.innerHTML =
+        "<tr><td colspan='5'>No contact submissions yet.</td></tr>";
       return;
     }
 
@@ -189,19 +192,19 @@ async function loadContactsAdmin() {
       tbody.appendChild(tr);
     });
   } catch (err) {
-    console.error(err);
+    console.error("Contacts admin error:", err);
     tbody.innerHTML =
       "<tr><td colspan='5'>Failed to load contact submissions.</td></tr>";
   }
 }
 
-// ------- Subscribers: list only -------
+
 async function loadSubsAdmin() {
   const tbody = document.getElementById("subsTableBody");
   tbody.innerHTML = "<tr><td colspan='2'>Loading...</td></tr>";
 
   try {
-    const res = await fetch(`${API_BASE}/subscriptions`);
+    const res = await fetch(`${API_V1}/subscriptions`);
     const data = await res.json();
 
     if (!Array.isArray(data) || data.length === 0) {
@@ -219,13 +222,13 @@ async function loadSubsAdmin() {
       tbody.appendChild(tr);
     });
   } catch (err) {
-    console.error(err);
+    console.error("Subscribers admin error:", err);
     tbody.innerHTML =
       "<tr><td colspan='2'>Failed to load subscribers.</td></tr>";
   }
 }
 
-// ------- Init -------
+
 document.addEventListener("DOMContentLoaded", () => {
   initProjectForm();
   initClientForm();

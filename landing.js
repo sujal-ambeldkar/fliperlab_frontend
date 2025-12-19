@@ -1,14 +1,14 @@
-// Change this if you deploy backend somewhere else
-const API_BASE = "http://localhost:5000/api";
 
-// -------- Load projects --------
-// -------- Load projects --------
+const API_BASE = "https://fliperlabbackend-production.up.railway.app";
+const API_V1 = `${API_BASE}/api/v1`;
+
+
 async function loadProjects() {
   const container = document.getElementById("projectsContainer");
   container.innerHTML = "<p>Loading projects...</p>";
 
   try {
-    const res = await fetch(`${API_BASE}/projects`);
+    const res = await fetch(`${API_V1}/projects`);
     const data = await res.json();
 
     if (!Array.isArray(data) || data.length === 0) {
@@ -21,7 +21,6 @@ async function loadProjects() {
       const card = document.createElement("div");
       card.className = "project-card";
 
-      // IMAGE first, then text, then button (inside same card)
       card.innerHTML = `
         <img src="${project.imageUrl}" alt="${project.name}" />
         <div class="project-content">
@@ -34,20 +33,18 @@ async function loadProjects() {
       container.appendChild(card);
     });
   } catch (err) {
-    console.error(err);
+    console.error("Projects error:", err);
     container.innerHTML = "<p>Failed to load projects.</p>";
   }
 }
 
 
-// -------- Load clients --------
-// -------- Load clients --------
 async function loadClients() {
   const container = document.getElementById("clientsContainer");
   container.innerHTML = "<p>Loading clients...</p>";
 
   try {
-    const res = await fetch(`${API_BASE}/clients`);
+    const res = await fetch(`${API_V1}/clients`);
     const data = await res.json();
 
     if (!Array.isArray(data) || data.length === 0) {
@@ -60,7 +57,6 @@ async function loadClients() {
       const card = document.createElement("div");
       card.className = "client-card";
 
-      // IMAGE first, then name, then description, then designation
       card.innerHTML = `
         <img class="client-avatar" src="${client.imageUrl}" alt="${client.name}" />
         <div class="client-main">
@@ -73,13 +69,12 @@ async function loadClients() {
       container.appendChild(card);
     });
   } catch (err) {
-    console.error(err);
+    console.error("Clients error:", err);
     container.innerHTML = "<p>Failed to load clients.</p>";
   }
 }
 
 
-// -------- Handle contact form --------
 function initContactForm() {
   const form = document.getElementById("contactForm");
   const messageEl = document.getElementById("contactMessage");
@@ -93,14 +88,14 @@ function initContactForm() {
       fullName: form.fullName.value.trim(),
       email: form.email.value.trim(),
       mobile: form.mobile.value.trim(),
-      city: form.city.value.trim(),
+      city: form.city.value.trim()
     };
 
     try {
-      const res = await fetch(`${API_BASE}/contacts`, {
+      const res = await fetch(`${API_V1}/contacts`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(payload)
       });
 
       const data = await res.json();
@@ -114,14 +109,14 @@ function initContactForm() {
         messageEl.classList.add("error");
       }
     } catch (err) {
-      console.error(err);
+      console.error("Contact error:", err);
       messageEl.textContent = "Something went wrong.";
       messageEl.classList.add("error");
     }
   });
 }
 
-// -------- Handle newsletter form --------
+
 function initNewsletterForm() {
   const form = document.getElementById("newsletterForm");
   const emailInput = document.getElementById("newsletterEmail");
@@ -135,10 +130,10 @@ function initNewsletterForm() {
     const payload = { email: emailInput.value.trim() };
 
     try {
-      const res = await fetch(`${API_BASE}/subscriptions`, {
+      const res = await fetch(`${API_V1}/subscriptions`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(payload)
       });
 
       const data = await res.json();
@@ -152,14 +147,14 @@ function initNewsletterForm() {
         messageEl.classList.add("error");
       }
     } catch (err) {
-      console.error(err);
+      console.error("Subscription error:", err);
       messageEl.textContent = "Something went wrong.";
       messageEl.classList.add("error");
     }
   });
 }
 
-// -------- Initialize on page load --------
+
 document.addEventListener("DOMContentLoaded", () => {
   loadProjects();
   loadClients();
