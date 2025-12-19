@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elevate Consulting</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header / Nav -->
+  <header class="site-header">
+    <div class="container nav-bar">
+      <div class="logo">
+        <span class="logo-mark">EC</span>
+        <span class="logo-text">Elevate Consulting</span>
+      </div>
+      <nav class="nav-links">
+
+  <a href="#projects">Projects</a>
+  <a href="#clients">Clients</a>
+  <a href="admin.html" class="nav-cta">Admin</a>
+
+  <a href="#contact" class="nav-cta">Contact</a>
+</nav>
+
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="badge">Strategy • Technology • Growth</p>
+        <h1>We help businesses turn complexity into clarity.</h1>
+        <p class="hero-subtitle">
+          Partner with our senior consultants to design scalable strategies,
+          modern digital products, and measurable outcomes.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn">Book a Consultation</a>
+          <a href="#projects" class="btn-outline">View Case Studies</a>
+        </div>
+        <div class="hero-meta">
+          <span>50+ clients</span>
+          <span>120+ completed projects</span>
+          <span>4.9/5 client rating</span>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img
+          src="https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg"
+          alt="Consultants discussing strategy"
+        />
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Why Choose Us -->
+  <section id="why-choose-us" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Why Choose Elevate Consulting?</h2>
+        <p>
+          Three pillars that drive measurable outcomes for every engagement.
+        </p>
+      </div>
+       
+      <div class="why-grid">
+        <article class="why-card">
+          <div class="why-icon potential">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M4 13l4-4 4 4 8-8"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <h3>Potential ROI</h3>
+          <p>
+            We prioritize initiatives by impact and effort so your team invests
+            in what truly moves revenue, retention, and efficiency.
+          </p>
+        </article>
+
+        <article class="why-card">
+          <div class="why-icon design">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M4 7h16M4 12h10M4 17h6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <h3>Design</h3>
+          <p>
+            We craft simple, user-centered experiences that make your products
+            easier to adopt and your brand easier to trust.
+          </p>
+        </article>
+
+        <article class="why-card">
+          <div class="why-icon marketing">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M4 10v8l4-2 4 2 4-2 4 2v-8l-4-2-4 2-4-2-4 2z"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <h3>Design Marketing</h3>
+          <p>
+            Align campaigns, messaging, and product positioning so your marketing
+            tells one clear, compelling story.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- Selected Projects (horizontal cards from backend) -->
+  <section id="projects" class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Selected Projects</h2>
+        <p>Recent engagements where we helped clients unlock growth.</p>
+      </div>
+      <div id="projectsContainer" class="projects-list"></div>
+    </div>
+  </section>
+
+  <!-- Clients (horizontal cards from backend) -->
+  <section id="clients" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>What Our Clients Say</h2>
+        <p>
+          Testimonials from teams that trusted us with their most important
+          initiatives.
+        </p>
+      </div>
+      <div id="clientsContainer" class="clients-list"></div>
+    </div>
+  </section>
+
+  <!-- Contact: Get a free consultancy -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="contact-card">
+        <div class="contact-card-content">
+          <h2>Get a free consultancy</h2>
+          <p>
+            Share a few details about your team and challenges. Our consultants
+            will review and get back within one business day.
+          </p>
+
+          <form id="contactForm" class="contact-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input id="fullName" name="fullName" type="text" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input id="email" name="email" type="email" required />
+              </div>
+            </div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="mobile">Mobile Number</label>
+                <input id="mobile" name="mobile" type="tel" required />
+              </div>
+              <div class="form-group">
+                <label for="city">City</label>
+                <input id="city" name="city" type="text" required />
+              </div>
+            </div>
+            <button type="submit" class="btn-orange">Get Started</button>
+            <p id="contactMessage" class="form-message"></p>
+          </form>
+        </div>
+
+        <div class="contact-card-side">
+          <h3>What you get</h3>
+          <ul>
+            <li>A 30–45 minute strategy call</li>
+            <li>Clear next steps and quick wins</li>
+            <li>No obligation to continue</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section id="newsletter" class="section section-alt">
+    <div class="container contact-layout">
+      <div class="newsletter-block">
+        <h2>Stay ahead with our insights</h2>
+        <p>
+          Get a short, practical newsletter on strategy and product once or
+          twice a month. No spam, ever.
+        </p>
+        <form id="newsletterForm" class="newsletter-form">
+          <input
+            type="email"
+            id="newsletterEmail"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+          <button type="submit" class="btn">Subscribe</button>
+          <p id="newsletterMessage" class="form-message"></p>
+        </form>
+        <p class="newsletter-note">
+          By subscribing, you agree to receive occasional emails from us.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+  <div class="footer-top">
+    <div class="container footer-top-inner">
+      <nav class="footer-nav">
+        <a href="#hero">Home</a>
+        <a href="#why-choose-us">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#clients">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="footer-subscribe">
+        <span class="footer-subscribe-label">Subscribe to</span>
+        <form id="footerNewsletterForm" class="footer-subscribe-form">
+          <input
+            type="email"
+            id="footerNewsletterEmail"
+            placeholder="Enter email address"
+            required
+          />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <span class="footer-copy">All rights reserved 2025</span>
+      <div class="footer-brand">
+        <span class="footer-logo-mark">EC</span>
+        <span class="footer-logo-text">Elevate Consult</span>
+      </div>
+      <div class="footer-social">
+        <span>○</span>
+        <span>○</span>
+        <span>○</span>
+        <span>○</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="landing.js"></script>
+</body>
+</html>

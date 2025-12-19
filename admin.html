@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel - Agency</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2 class="logo">Admin</h2>
+      <nav>
+        <button class="nav-link active" data-target="projectsSection">Projects</button>
+        <button class="nav-link" data-target="clientsSection">Clients</button>
+        <button class="nav-link" data-target="contactsSection">Contacts</button>
+        <button class="nav-link" data-target="subsSection">Subscribers</button>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+      <header class="topbar">
+        <h1>Admin Dashboard</h1>
+        <a href="index.html" class="btn-secondary">View Site</a>
+      </header>
+
+      <!-- Projects -->
+      <section id="projectsSection" class="section visible">
+        <h2>Project Management</h2>
+
+        <form id="projectForm" class="panel-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Image URL</label>
+              <input type="text" name="imageUrl" required />
+            </div>
+            <div class="form-group">
+              <label>Project Name</label>
+              <input type="text" name="name" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea name="description" rows="2" required></textarea>
+          </div>
+          <button type="submit" class="btn">Add Project</button>
+          <p id="projectMessage" class="form-message"></p>
+        </form>
+
+        <h3>All Projects</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Created</th>
+            </tr>
+          </thead>
+          <tbody id="projectsTableBody"></tbody>
+        </table>
+      </section>
+
+      <!-- Clients -->
+      <section id="clientsSection" class="section">
+        <h2>Client Management</h2>
+
+        <form id="clientForm" class="panel-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Image URL</label>
+              <input type="text" name="imageUrl" required />
+            </div>
+            <div class="form-group">
+              <label>Client Name</label>
+              <input type="text" name="name" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea name="description" rows="2" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Designation</label>
+            <input type="text" name="designation" required />
+          </div>
+          <button type="submit" class="btn">Add Client</button>
+          <p id="clientMessage" class="form-message"></p>
+        </form>
+
+        <h3>All Clients</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Designation</th>
+              <th>Description</th>
+              <th>Created</th>
+            </tr>
+          </thead>
+          <tbody id="clientsTableBody"></tbody>
+        </table>
+      </section>
+
+      <!-- Contacts -->
+      <section id="contactsSection" class="section">
+        <h2>Contact Form Responses</h2>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Mobile</th>
+              <th>City</th>
+              <th>Submitted</th>
+            </tr>
+          </thead>
+          <tbody id="contactsTableBody"></tbody>
+        </table>
+      </section>
+
+      <!-- Subscribers -->
+      <section id="subsSection" class="section">
+        <h2>Newsletter Subscribers</h2>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Subscribed</th>
+            </tr>
+          </thead>
+          <tbody id="subsTableBody"></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
