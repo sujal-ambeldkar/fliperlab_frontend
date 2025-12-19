@@ -1,7 +1,7 @@
 const API_BASE = "https://fliperlabbackend-production.up.railway.app";
 const API_V1 = `${API_BASE}/api/v1`;
 
-// small helper to reduce repeat
+// small helper to reduce repeat (JSON only)
 async function apiRequest(url, options = {}) {
   const res = await fetch(url, {
     headers: { "Content-Type": "application/json", ...(options.headers || {}) },
@@ -41,7 +41,8 @@ async function loadProjects() {
       const card = document.createElement("div");
       card.className = "project-card";
 
-      const safeImage = project.imageUrl || "https://via.placeholder.com/400x300";
+      const safeImage =
+        project.imageUrl || "https://via.placeholder.com/400x300";
       const safeName = project.name || "Untitled project";
       const safeDesc = project.description || "";
 
