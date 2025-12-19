@@ -11,6 +11,7 @@ body {
   color: #111827;
 }
 
+/* Layout */
 .admin-layout {
   display: grid;
   grid-template-columns: 240px 1fr;
@@ -24,11 +25,12 @@ body {
   padding: 20px 16px;
   display: flex;
   flex-direction: column;
+  gap: 16px;
 }
 
 .logo {
   font-size: 1.4rem;
-  margin-bottom: 24px;
+  font-weight: 600;
 }
 
 .sidebar nav {
@@ -46,6 +48,7 @@ body {
   color: #d1d5db;
   cursor: pointer;
   font-size: 0.95rem;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .nav-link:hover {
@@ -67,8 +70,14 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+  gap: 12px;
 }
 
+.topbar h1 {
+  font-size: 1.4rem;
+}
+
+/* Sections */
 .section {
   display: none;
 }
@@ -78,11 +87,11 @@ body {
 }
 
 .section h2 {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   margin-bottom: 16px;
 }
 
-/* Forms */
+/* Forms / panels */
 .panel-form {
   background-color: #fff;
   padding: 16px;
@@ -118,8 +127,10 @@ body {
 
 textarea {
   resize: vertical;
+  min-height: 80px;
 }
 
+/* Buttons */
 .btn {
   display: inline-block;
   border: none;
@@ -129,6 +140,10 @@ textarea {
   padding: 8px 18px;
   cursor: pointer;
   font-size: 0.9rem;
+}
+
+.btn:hover {
+  background-color: #4338ca;
 }
 
 .btn-secondary {
@@ -141,6 +156,7 @@ textarea {
   font-size: 0.85rem;
 }
 
+/* Messages */
 .form-message {
   margin-top: 6px;
   font-size: 0.85rem;
@@ -188,26 +204,98 @@ textarea {
   border-radius: 4px;
 }
 
-/* Responsive */
+/* ----------------- RESPONSIVE ----------------- */
+
+/* ---------- TABLET (<= 900px) ---------- */
 @media (max-width: 900px) {
-  .admin-layout {
+  /* Hero stacks */
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .hero {
+    padding: 40px 0 32px;
+  }
+
+  /* Contact: 1 column */
+  .contact-card {
     grid-template-columns: 1fr;
   }
 
-  .sidebar {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+  /* Cards: 2 per row */
+  .project-card,
+  .client-card {
+    flex: 1 1 45%;
   }
 
-  .sidebar nav {
-    flex-direction: row;
-    flex-wrap: wrap;
+  /* Footer: sections stack vertically a bit */
+  .footer-top-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-bottom-inner {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
   }
 }
 
+/* ---------- SMALL TABLET / LARGE PHONE (<= 700px) ---------- */
+@media (max-width: 700px) {
+  /* Simpler header on mobile */
+  .nav-bar {
+    padding: 8px 0;
+  }
+
+  .nav-links {
+    display: none; /* hide full nav; simple sticky header */
+  }
+
+  .hero-copy h1 {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+
+  /* Why cards single column */
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- PHONE (<= 600px) ---------- */
 @media (max-width: 600px) {
-  .form-row {
+  /* Cards full width */
+  .project-card,
+  .client-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  /* Contact form fields in one column */
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Newsletter / footer subscribe full width */
+  .newsletter-form {
     flex-direction: column;
+    align-items: stretch;
+  }
+
+  .newsletter-form input,
+  .newsletter-form button,
+  .footer-subscribe-form input,
+  .footer-subscribe-form button {
+    width: 100%;
+  }
+
+  .footer-subscribe-form {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
