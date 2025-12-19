@@ -1,7 +1,7 @@
 const API_BASE = "https://fliperlabbackend-production.up.railway.app";
 const API_V1 = `${API_BASE}/api/v1`;
 
-// ---------- Helper for JSON (GET etc.) ----------
+// ---------- Small helper ----------
 async function apiRequest(url, options = {}) {
   const res = await fetch(url, {
     headers: { "Content-Type": "application/json", ...(options.headers || {}) },
@@ -39,7 +39,7 @@ document.querySelectorAll(".nav-link").forEach((btn) => {
   });
 });
 
-// ---------- Projects (table) ----------
+// ---------- Projects ----------
 async function loadProjectsAdmin() {
   const tbody = document.getElementById("projectsTableBody");
   if (!tbody) return;
@@ -77,7 +77,6 @@ async function loadProjectsAdmin() {
   }
 }
 
-// ---------- Project form (Cloudinary upload) ----------
 function initProjectForm() {
   const form = document.getElementById("projectForm");
   const msg = document.getElementById("projectMessage");
@@ -88,25 +87,24 @@ function initProjectForm() {
     msg.textContent = "Saving...";
     msg.className = "form-message";
 
-    const formData = new FormData(form); // includes file + fields
+    const formData = new FormData(form);
+    const payload = {
+      imageUrl: formData.get("imageUrl")?.trim(),
+      name: formData.get("name")?.trim(),
+      description: formData.get("description")?.trim(),
+    };
 
-    const name = formData.get("name")?.trim();
-    const description = formData.get("description")?.trim();
-    const file = formData.get("image");
-
-    if (!file || !file.name || !name || !description) {
-      msg.textContent = "Please fill all fields and choose an image.";
+    if (!payload.imageUrl || !payload.name || !payload.description) {
+      msg.textContent = "Please fill all fields.";
       msg.classList.add("error");
       return;
     }
 
     try {
-      const res = await fetch(`${API_V1}/projects`, {
+      await apiRequest(`${API_V1}/projects`, {
         method: "POST",
-        body: formData, // multipart/form-data
+        body: JSON.stringify(payload),
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Failed to add project.");
 
       msg.textContent = "Project added.";
       msg.classList.add("success");
@@ -120,7 +118,7 @@ function initProjectForm() {
   });
 }
 
-// ---------- Clients (table) ----------
+// ---------- Clients ----------
 async function loadClientsAdmin() {
   const tbody = document.getElementById("clientsTableBody");
   if (!tbody) return;
@@ -160,7 +158,6 @@ async function loadClientsAdmin() {
   }
 }
 
-// ---------- Client form (Cloudinary upload) ----------
 function initClientForm() {
   const form = document.getElementById("clientForm");
   const msg = document.getElementById("clientMessage");
@@ -172,25 +169,24 @@ function initClientForm() {
     msg.className = "form-message";
 
     const formData = new FormData(form);
+    const payload = {
+      imageUrl: formData.get("imageUrl")?.trim(),
+      name: formData.get("name")?.trim(),
+      description: formData.get("description")?.trim(),
+      designation: formData.get("designation")?.trim(),
+    };
 
-    const name = formData.get("name")?.trim();
-    const description = formData.get("description")?.trim();
-    const designation = formData.get("designation")?.trim();
-    const file = formData.get("image");
-
-    if (!file || !file.name || !name || !description || !designation) {
-      msg.textContent = "Please fill all fields and choose an image.";
+    if (!payload.imageUrl || !payload.name || !payload.description || !payload.designation) {
+      msg.textContent = "Please fill all fields.";
       msg.classList.add("error");
       return;
     }
 
     try {
-      const res = await fetch(`${API_V1}/clients`, {
+      await apiRequest(`${API_V1}/clients`, {
         method: "POST",
-        body: formData,
+        body: JSON.stringify(payload),
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Failed to add client.");
 
       msg.textContent = "Client added.";
       msg.classList.add("success");
@@ -204,7 +200,7 @@ function initClientForm() {
   });
 }
 
-// ---------- Contacts (table) ----------
+// ---------- Contacts ----------
 async function loadContactsAdmin() {
   const tbody = document.getElementById("contactsTableBody");
   if (!tbody) return;
@@ -242,7 +238,7 @@ async function loadContactsAdmin() {
   }
 }
 
-// ---------- Subscriptions (table) ----------
+// ---------- Subscriptions ----------
 async function loadSubsAdmin() {
   const tbody = document.getElementById("subsTableBody");
   if (!tbody) return;
